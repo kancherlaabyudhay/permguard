@@ -1,0 +1,1760 @@
+2026-03-13T17:07:29.575+05:30  INFO 23324 --- [restartedMain] com.permguard.PermguardApplication       : Starting PermguardApplication using Java 17.0.12 with PID 23324 (C:\Users\kanch\Documents\ecommru[1]\permguard\target\classes started by kanch in C:\Users\kanch\Documents\ecommru[1]\permguard)
+2026-03-13T17:07:29.585+05:30 DEBUG 23324 --- [restartedMain] com.permguard.PermguardApplication       : Running with Spring Boot v3.2.4, Spring v6.1.5
+2026-03-13T17:07:29.587+05:30  INFO 23324 --- [restartedMain] com.permguard.PermguardApplication       : The following 1 profile is active: "dev"
+2026-03-13T17:07:29.657+05:30  INFO 23324 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-13T17:07:29.659+05:30  INFO 23324 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-13T17:07:31.221+05:30  INFO 23324 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-13T17:07:31.363+05:30  INFO 23324 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 125 ms. Found 7 JPA repository interfaces.
+2026-03-13T17:07:32.526+05:30  INFO 23324 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-03-13T17:07:32.552+05:30  INFO 23324 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-13T17:07:32.553+05:30  INFO 23324 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2026-03-13T17:07:32.693+05:30  INFO 23324 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-13T17:07:32.694+05:30  INFO 23324 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3035 ms
+2026-03-13T17:07:32.864+05:30 DEBUG 23324 --- [restartedMain] com.permguard.config.JwtAuthFilter       : Filter 'jwtAuthFilter' configured for use
+2026-03-13T17:07:33.170+05:30  INFO 23324 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-13T17:07:33.330+05:30  INFO 23324 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-03-13T17:07:33.438+05:30  INFO 23324 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-13T17:07:34.261+05:30  INFO 23324 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-13T17:07:34.368+05:30  INFO 23324 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-13T17:07:35.154+05:30  INFO 23324 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5764521b
+2026-03-13T17:07:35.170+05:30  INFO 23324 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-13T17:07:37.918+05:30  INFO 23324 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-13T17:07:37.927+05:30  INFO 23324 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-13T17:07:38.732+05:30  INFO 23324 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-13T17:07:39.625+05:30  WARN 23324 --- [restartedMain] o.s.aop.framework.CglibAopProxy          : Unable to proxy interface-implementing method [public final void org.springframework.web.filter.OncePerRequestFilter.doFilter(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse,jakarta.servlet.FilterChain) throws jakarta.servlet.ServletException,java.io.IOException] because it is marked as final, consider using interface-based JDK proxies instead.
+2026-03-13T17:07:39.626+05:30  WARN 23324 --- [restartedMain] o.s.aop.framework.CglibAopProxy          : Unable to proxy interface-implementing method [public final void org.springframework.web.filter.GenericFilterBean.init(jakarta.servlet.FilterConfig) throws jakarta.servlet.ServletException] because it is marked as final, consider using interface-based JDK proxies instead.
+2026-03-13T17:07:41.501+05:30  WARN 23324 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Multiple @RequestMapping annotations found on public org.springframework.http.ResponseEntity com.permguard.controller.PermissionController.reject(java.lang.Long,org.springframework.security.core.Authentication), but only the first will be used: [@org.springframework.web.bind.annotation.PostMapping(consumes={}, headers={}, name="", params={}, path={"/{id}/reject"}, produces={}, value={"/{id}/reject"}), @org.springframework.web.bind.annotation.PutMapping(consumes={}, headers={}, name="", params={}, path={"/{id}/reject"}, produces={}, value={"/{id}/reject"})]
+2026-03-13T17:07:41.505+05:30  WARN 23324 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Multiple @RequestMapping annotations found on public org.springframework.http.ResponseEntity com.permguard.controller.PermissionController.approve(java.lang.Long,org.springframework.security.core.Authentication), but only the first will be used: [@org.springframework.web.bind.annotation.PostMapping(consumes={}, headers={}, name="", params={}, path={"/{id}/approve"}, produces={}, value={"/{id}/approve"}), @org.springframework.web.bind.annotation.PutMapping(consumes={}, headers={}, name="", params={}, path={"/{id}/approve"}, produces={}, value={"/{id}/approve"})]
+2026-03-13T17:07:42.077+05:30  INFO 23324 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3ed5f567, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1eb7ce81, org.springframework.security.web.context.SecurityContextHolderFilter@78ee70d8, org.springframework.security.web.header.HeaderWriterFilter@11e8480a, org.springframework.web.filter.CorsFilter@90b656b, org.springframework.security.web.authentication.logout.LogoutFilter@6f8ea092, com.permguard.config.JwtAuthFilter@a77bd70, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@396a9f55, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3f649567, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7c53832e, org.springframework.security.web.session.SessionManagementFilter@5c42a0ec, org.springframework.security.web.access.ExceptionTranslationFilter@69143afa, org.springframework.security.web.access.intercept.AuthorizationFilter@3347ed2]
+2026-03-13T17:07:42.896+05:30  INFO 23324 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-13T17:07:43.111+05:30  INFO 23324 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-03-13T17:07:43.135+05:30  INFO 23324 --- [restartedMain] com.permguard.PermguardApplication       : Started PermguardApplication in 14.234 seconds (process running for 15.307)
+2026-03-13T17:07:43.330+05:30 DEBUG 23324 --- [restartedMain] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    limit
+        ?
+2026-03-13T17:07:43.331+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:08:21.729+05:30  INFO 23324 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-13T17:08:21.737+05:30  INFO 23324 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-13T17:08:21.777+05:30  INFO 23324 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 38 ms
+2026-03-13T17:08:22.474+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:08:22.872+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        failed_attempts=0 
+    where
+        email=?
+2026-03-13T17:08:23.052+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        account_locked=?,
+        dept_id=?,
+        email=?,
+        failed_attempts=?,
+        full_name=?,
+        is_active=?,
+        last_login=?,
+        must_change_password=?,
+        password_hash=?,
+        phone=?,
+        profile_photo=?,
+        role=?,
+        roll_number=?,
+        updated_at=?,
+        year_of_study=? 
+    where
+        user_id=?
+2026-03-13T17:08:23.420+05:30 DEBUG 23324 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:08:23.441+05:30 DEBUG 23324 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.student_id=? 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:08:23.507+05:30 DEBUG 23324 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:08:23.597+05:30 DEBUG 23324 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:08:23.608+05:30 DEBUG 23324 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.student_id=? 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:08:23.615+05:30 DEBUG 23324 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:08:40.831+05:30 DEBUG 23324 --- [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:08:40.857+05:30 DEBUG 23324 --- [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.student_id=? 
+        and p1_0.status=?
+2026-03-13T17:08:43.164+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:09:43.317+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:10:44.085+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:11:43.427+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:12:43.330+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:13:43.235+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:14:43.216+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:15:43.149+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:16:43.147+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:17:43.139+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:18:43.177+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:19:23.090+05:30  INFO 23324 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (0 additions, 0 deletions, 4 modifications)
+2026-03-13T17:19:23.433+05:30  INFO 23324 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-13T17:19:23.499+05:30  INFO 23324 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-13T17:19:23.511+05:30  INFO 23324 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-03-13T17:19:23.908+05:30  INFO 23324 --- [restartedMain] com.permguard.PermguardApplication       : Starting PermguardApplication using Java 17.0.12 with PID 23324 (C:\Users\kanch\Documents\ecommru[1]\permguard\target\classes started by kanch in C:\Users\kanch\Documents\ecommru[1]\permguard)
+2026-03-13T17:19:23.910+05:30 DEBUG 23324 --- [restartedMain] com.permguard.PermguardApplication       : Running with Spring Boot v3.2.4, Spring v6.1.5
+2026-03-13T17:19:23.910+05:30  INFO 23324 --- [restartedMain] com.permguard.PermguardApplication       : The following 1 profile is active: "dev"
+2026-03-13T17:19:24.431+05:30  INFO 23324 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-13T17:19:24.494+05:30  INFO 23324 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 7 JPA repository interfaces.
+2026-03-13T17:19:24.837+05:30  INFO 23324 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-03-13T17:19:24.842+05:30  INFO 23324 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-13T17:19:24.842+05:30  INFO 23324 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2026-03-13T17:19:24.884+05:30  INFO 23324 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-13T17:19:24.885+05:30  INFO 23324 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 970 ms
+2026-03-13T17:19:24.920+05:30 DEBUG 23324 --- [restartedMain] com.permguard.config.JwtAuthFilter       : Filter 'jwtAuthFilter' configured for use
+2026-03-13T17:19:25.009+05:30  INFO 23324 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-13T17:19:25.025+05:30  INFO 23324 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-13T17:19:25.036+05:30  INFO 23324 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-13T17:19:25.039+05:30  INFO 23324 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-03-13T17:19:25.116+05:30  INFO 23324 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@79659e31
+2026-03-13T17:19:25.116+05:30  INFO 23324 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-03-13T17:19:25.330+05:30  INFO 23324 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-13T17:19:25.331+05:30  INFO 23324 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-13T17:19:25.479+05:30  WARN 23324 --- [restartedMain] o.s.aop.framework.CglibAopProxy          : Unable to proxy interface-implementing method [public final void org.springframework.web.filter.OncePerRequestFilter.doFilter(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse,jakarta.servlet.FilterChain) throws jakarta.servlet.ServletException,java.io.IOException] because it is marked as final, consider using interface-based JDK proxies instead.
+2026-03-13T17:19:25.480+05:30  WARN 23324 --- [restartedMain] o.s.aop.framework.CglibAopProxy          : Unable to proxy interface-implementing method [public final void org.springframework.web.filter.GenericFilterBean.init(jakarta.servlet.FilterConfig) throws jakarta.servlet.ServletException] because it is marked as final, consider using interface-based JDK proxies instead.
+2026-03-13T17:19:25.926+05:30  INFO 23324 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@10cec1ac, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b31c49c, org.springframework.security.web.context.SecurityContextHolderFilter@547fbaa8, org.springframework.security.web.header.HeaderWriterFilter@78f75042, org.springframework.web.filter.CorsFilter@324d7eba, org.springframework.security.web.authentication.logout.LogoutFilter@63db03fa, com.permguard.config.JwtAuthFilter@1fd2d626, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76500992, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3467225a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@40d8c80, org.springframework.security.web.session.SessionManagementFilter@35b97f0a, org.springframework.security.web.access.ExceptionTranslationFilter@6b693c81, org.springframework.security.web.access.intercept.AuthorizationFilter@18490f94]
+2026-03-13T17:19:26.171+05:30  INFO 23324 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-03-13T17:19:26.195+05:30  INFO 23324 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-03-13T17:19:26.206+05:30  INFO 23324 --- [restartedMain] com.permguard.PermguardApplication       : Started PermguardApplication in 2.385 seconds (process running for 718.379)
+2026-03-13T17:19:26.209+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:19:26.247+05:30 DEBUG 23324 --- [restartedMain] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    limit
+        ?
+2026-03-13T17:19:26.268+05:30  INFO 23324 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-03-13T17:19:42.580+05:30  INFO 23324 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-13T17:19:42.580+05:30  INFO 23324 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-13T17:19:42.582+05:30  INFO 23324 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-03-13T17:19:42.614+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:19:42.626+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.student_id=? 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:19:42.647+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:19:42.674+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:19:42.679+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.student_id=? 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:19:42.683+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:19:59.738+05:30 DEBUG 23324 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:19:59.746+05:30 DEBUG 23324 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.student_id=? 
+        and p1_0.status=?
+2026-03-13T17:19:59.760+05:30 DEBUG 23324 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.role=? 
+    limit
+        ?
+2026-03-13T17:19:59.787+05:30 DEBUG 23324 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        permissions
+        (approved_at, created_at, expiry_time, faculty_id, qr_token, reason, status, student_id, type, updated_at) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-03-13T17:20:04.021+05:30 DEBUG 23324 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:20:04.027+05:30 DEBUG 23324 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.student_id=? 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:20:04.032+05:30 DEBUG 23324 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:09.348+05:30 DEBUG 23324 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:20:09.436+05:30 DEBUG 23324 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        failed_attempts=0 
+    where
+        email=?
+2026-03-13T17:20:09.447+05:30 DEBUG 23324 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        account_locked=?,
+        dept_id=?,
+        email=?,
+        failed_attempts=?,
+        full_name=?,
+        is_active=?,
+        last_login=?,
+        must_change_password=?,
+        password_hash=?,
+        phone=?,
+        profile_photo=?,
+        role=?,
+        roll_number=?,
+        updated_at=?,
+        year_of_study=? 
+    where
+        user_id=?
+2026-03-13T17:20:09.516+05:30 DEBUG 23324 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=? 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:20:09.520+05:30 DEBUG 23324 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:09.522+05:30 DEBUG 23324 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:09.545+05:30 DEBUG 23324 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=? 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:20:09.548+05:30 DEBUG 23324 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:09.550+05:30 DEBUG 23324 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:13.694+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.id=?
+2026-03-13T17:20:13.702+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:13.938+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:13.941+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    update
+        permissions 
+    set
+        approved_at=?,
+        created_at=?,
+        expiry_time=?,
+        faculty_id=?,
+        qr_token=?,
+        reason=?,
+        status=?,
+        student_id=?,
+        type=?,
+        updated_at=? 
+    where
+        id=?
+2026-03-13T17:20:18.904+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:20:18.910+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:18.913+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:18.917+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:18.920+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:26.219+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:20:39.318+05:30 DEBUG 23324 --- [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:20:39.415+05:30 DEBUG 23324 --- [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        failed_attempts=0 
+    where
+        email=?
+2026-03-13T17:20:39.419+05:30 DEBUG 23324 --- [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        account_locked=?,
+        dept_id=?,
+        email=?,
+        failed_attempts=?,
+        full_name=?,
+        is_active=?,
+        last_login=?,
+        must_change_password=?,
+        password_hash=?,
+        phone=?,
+        profile_photo=?,
+        role=?,
+        roll_number=?,
+        updated_at=?,
+        year_of_study=? 
+    where
+        user_id=?
+2026-03-13T17:20:39.644+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        permissions p1_0
+2026-03-13T17:20:39.651+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.654+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.659+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.663+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.669+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.676+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        usage_logs ul1_0
+2026-03-13T17:20:39.728+05:30 DEBUG 23324 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2026-03-13T17:20:39.768+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        permissions p1_0
+2026-03-13T17:20:39.773+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.775+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.778+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.780+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.783+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:20:39.786+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        usage_logs ul1_0
+2026-03-13T17:20:39.790+05:30 DEBUG 23324 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2026-03-13T17:20:45.707+05:30 DEBUG 23324 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:20:45.795+05:30 DEBUG 23324 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        failed_attempts=0 
+    where
+        email=?
+2026-03-13T17:20:45.800+05:30 DEBUG 23324 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        account_locked=?,
+        dept_id=?,
+        email=?,
+        failed_attempts=?,
+        full_name=?,
+        is_active=?,
+        last_login=?,
+        must_change_password=?,
+        password_hash=?,
+        phone=?,
+        profile_photo=?,
+        role=?,
+        roll_number=?,
+        updated_at=?,
+        year_of_study=? 
+    where
+        user_id=?
+2026-03-13T17:20:45.867+05:30 DEBUG 23324 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:20:45.871+05:30 DEBUG 23324 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.student_id=? 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:20:45.874+05:30 DEBUG 23324 --- [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:45.894+05:30 DEBUG 23324 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:20:45.899+05:30 DEBUG 23324 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.student_id=? 
+    order by
+        p1_0.created_at desc
+2026-03-13T17:20:45.902+05:30 DEBUG 23324 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-13T17:20:49.357+05:30 DEBUG 23324 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.id=?
+2026-03-13T17:21:19.441+05:30 DEBUG 23324 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.account_locked,
+        u1_0.created_at,
+        u1_0.dept_id,
+        u1_0.email,
+        u1_0.failed_attempts,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.last_login,
+        u1_0.must_change_password,
+        u1_0.password_hash,
+        u1_0.phone,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.roll_number,
+        u1_0.updated_at,
+        u1_0.year_of_study 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-13T17:21:19.536+05:30 DEBUG 23324 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        failed_attempts=0 
+    where
+        email=?
+2026-03-13T17:21:19.539+05:30 DEBUG 23324 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        account_locked=?,
+        dept_id=?,
+        email=?,
+        failed_attempts=?,
+        full_name=?,
+        is_active=?,
+        last_login=?,
+        must_change_password=?,
+        password_hash=?,
+        phone=?,
+        profile_photo=?,
+        role=?,
+        roll_number=?,
+        updated_at=?,
+        year_of_study=? 
+    where
+        user_id=?
+2026-03-13T17:21:19.657+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        permissions p1_0
+2026-03-13T17:21:19.660+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.664+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.666+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.682+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.686+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.690+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        usage_logs ul1_0
+2026-03-13T17:21:19.718+05:30 DEBUG 23324 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2026-03-13T17:21:19.734+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        permissions p1_0
+2026-03-13T17:21:19.737+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.740+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.744+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.746+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.753+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        count(p1_0.id) 
+    from
+        permissions p1_0 
+    where
+        p1_0.status=?
+2026-03-13T17:21:19.756+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        usage_logs ul1_0
+2026-03-13T17:21:19.761+05:30 DEBUG 23324 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2026-03-13T17:21:26.209+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:22:26.216+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:23:26.210+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:24:26.209+05:30 DEBUG 23324 --- [scheduling-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.approved_at,
+        p1_0.created_at,
+        p1_0.expiry_time,
+        p1_0.faculty_id,
+        p1_0.qr_token,
+        p1_0.reason,
+        p1_0.status,
+        p1_0.student_id,
+        p1_0.type,
+        p1_0.updated_at 
+    from
+        permissions p1_0 
+    where
+        p1_0.status='APPROVED' 
+        and p1_0.expiry_time<?
+2026-03-13T17:24:41.036+05:30  INFO 23324 --- [RMI TCP Connection(20)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-03-13T17:24:41.326+05:30  INFO 23324 --- [RMI TCP Connection(20)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-13T17:24:41.371+05:30  INFO 23324 --- [RMI TCP Connection(20)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-03-13T17:24:41.383+05:30  INFO 23324 --- [RMI TCP Connection(20)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.

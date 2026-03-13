@@ -1,0 +1,12 @@
+# PermGuard gitignore 
+permguard/target/
+permguard/.idea/
+permguard/*.iml
+permguard-frontend/node_modules/
+permguard-frontend/dist/
+permguard-frontend/.env
+permguard-frontend/.env.local
+permguard-frontend/.env.production
+*.class
+.DS_Store
+Thumbs.db
