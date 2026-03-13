@@ -97,10 +97,11 @@ public class Security {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         // ✅ Explicit origins instead of wildcard pattern (required with credentials)
-        configuration.setAllowedOriginPatterns(Arrays.asList(
-    "http://localhost:5173",
-    "https://*.netlify.app"
-));
+        configuration.setAllowedOrigins(Arrays.asList(
+                 "http://localhost:5173",
+                 "https://permguard.netlify.app",
+                 "https://69b40b81f7c3356dcaa6f232--permguard.netlify.app"
+     ));
         config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS","PATCH"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
