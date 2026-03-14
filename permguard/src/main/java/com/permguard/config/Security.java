@@ -60,7 +60,6 @@ public class Security {
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                // ✅ Allow CORS preflight OPTIONS requests
                 .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(PUBLIC_URLS).permitAll()
                 .requestMatchers(AUTHENTICATED_URLS).authenticated()
@@ -96,12 +95,11 @@ public class Security {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // ✅ Explicit origins instead of wildcard pattern (required with credentials)
-        configuration.setAllowedOrigins(Arrays.asList(
-                 "http://localhost:5173",
-                 "https://permguard.netlify.app",
-                 "https://69b40b81f7c3356dcaa6f232--permguard.netlify.app"
-     ));
+        config.setAllowedOrigins(Arrays.asList(
+                "http://localhost:5173",
+                "https://permguard.netlify.app",
+                "https://69b40b81f7c3356dcaa6f232--permguard.netlify.app"
+        ));
         config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS","PATCH"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
