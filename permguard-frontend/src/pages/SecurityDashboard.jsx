@@ -130,10 +130,20 @@ export default function SecurityDashboard() {
 
   const handleAutoScan = async (qrToken) => {
     if (!qrToken.trim()) return;
+
+    // Extract token if QR contains JSON
+    let extractedToken = qrToken.trim();
+    try {
+      const parsed = JSON.parse(qrToken.trim());
+      if (parsed.token) extractedToken = parsed.token;
+    } catch (e) {
+      // Not JSON, use as-is
+    }
+
     setScanning(true);
     setResult(null);
     try {
-      const r = await gateApi.scan({ qrToken: qrToken.trim(), scanType });
+      const r = await gateApi.scan({ qrToken: extractedToken, scanType });
       setResult(r.data);
       if (r.data.valid) { loadStats(); }
     } catch (err) {
