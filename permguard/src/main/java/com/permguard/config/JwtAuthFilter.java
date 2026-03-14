@@ -30,8 +30,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String authHeader = request.getHeader("Authorization");
-        System.out.println("[JWT DEBUG] Path: " + request.getRequestURI());
-        System.out.println("[JWT DEBUG] Auth header: " + authHeader);
+        
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
