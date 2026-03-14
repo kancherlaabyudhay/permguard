@@ -19,7 +19,6 @@ export default function SecurityDashboard() {
   const [stats, setStats] = useState(null);
   const [loadingHistory, setLoadingHistory] = useState(false);
 
-  // Camera scanner state
   const [cameraActive, setCameraActive] = useState(false);
   const [cameraError, setCameraError] = useState('');
   const [scannerLibLoaded, setScannerLibLoaded] = useState(false);
@@ -28,7 +27,6 @@ export default function SecurityDashboard() {
   const scanIntervalRef = useRef(null);
   const streamRef = useRef(null);
 
-  // Load jsQR library dynamically
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js';
@@ -56,14 +54,12 @@ export default function SecurityDashboard() {
     if (activeTab === 'history') loadHistory();
   }, [activeTab]);
 
-  // ── CAMERA FUNCTIONS ──────────────────────────────────────────
-
   const startCamera = async () => {
     setCameraError('');
     try {
       const constraints = {
         video: {
-          facingMode: { ideal: 'environment' }, // rear camera on mobile
+          facingMode: { ideal: 'environment' },
           width: { ideal: 640 },
           height: { ideal: 480 }
         }
@@ -72,10 +68,15 @@ export default function SecurityDashboard() {
       streamRef.current = stream;
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        videoRef.current.play();
+        videoRef.current.onloadedmetadata = () => {
+          videoRef.current.play();
+          setCameraActive(true);
+          startScanning();
+        };
+      } else {
+        setCameraActive(true);
+        startScanning();
       }
-      setCameraActive(true);
-      startScanning();
     } catch (err) {
       if (err.name === 'NotAllowedError') {
         setCameraError('Camera permission denied. Please allow camera access and try again.');
@@ -113,19 +114,17 @@ export default function SecurityDashboard() {
 
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-      // Use jsQR global (loaded via script tag)
       if (window.jsQR) {
         const code = window.jsQR(imageData.data, imageData.width, imageData.height, {
           inversionAttempts: 'dontInvert'
         });
         if (code && code.data) {
-          // QR code found!
           stopCamera();
           setToken(code.data);
           handleAutoScan(code.data);
         }
       }
-    }, 300); // scan every 300ms
+    }, 300);
   };
 
   const handleAutoScan = async (qrToken) => {
@@ -150,8 +149,6 @@ export default function SecurityDashboard() {
       setResult({ valid: false, message: err.response?.data?.message || 'Scan failed', reason: 'ERROR' });
     } finally { setScanning(false); }
   };
-
-  // ── MANUAL SCAN ───────────────────────────────────────────────
 
   const handleManualScan = async (e) => {
     e.preventDefault();
@@ -182,7 +179,6 @@ export default function SecurityDashboard() {
               <div className="stat-card"><div className="stat-label">Pending</div><div className="stat-value" style={{color:'#C9973A'}}>{stats?.pendingPermissions ?? '—'}</div></div>
             </div>
 
-            {/* Scan Type Toggle */}
             <div style={styles.scanTypeRow}>
               {['EXIT','RETURN'].map(t => (
                 <button
@@ -198,13 +194,10 @@ export default function SecurityDashboard() {
 
             <div className="two-col" style={{marginTop:20}}>
 
-              {/* ── CAMERA SCANNER ── */}
               <div className="panel">
                 <div className="panel-header">
                   <h3>📷 Camera Scanner</h3>
-                  {cameraActive && (
-                    <span style={styles.liveBadge}>● LIVE</span>
-                  )}
+                  {cameraActive && <span style={styles.liveBadge}>● LIVE</span>}
                 </div>
                 <div className="panel-body">
                   {!cameraActive ? (
@@ -233,7 +226,6 @@ export default function SecurityDashboard() {
                           muted
                           autoPlay
                         />
-                        {/* Scan overlay */}
                         <div style={styles.scanOverlay}>
                           <div style={styles.scanCornerTL} />
                           <div style={styles.scanCornerTR} />
@@ -258,7 +250,6 @@ export default function SecurityDashboard() {
                 </div>
               </div>
 
-              {/* ── MANUAL / RESULT ── */}
               <div className="panel">
                 <div className="panel-header"><h3>⌨️ Manual Entry</h3></div>
                 <div className="panel-body">
@@ -269,7 +260,7 @@ export default function SecurityDashboard() {
                         className="form-control"
                         value={token}
                         onChange={e => setToken(e.target.value)}
-                        placeholder="Paste QR token here…"
+                        placeholder="Paste QR token or JSON here…"
                         style={{fontFamily:'monospace', fontSize:'0.82rem'}}
                       />
                       <div style={{fontSize:'0.75rem', color:'#aaa', marginTop:4}}>
@@ -291,7 +282,6 @@ export default function SecurityDashboard() {
                     </div>
                   </form>
 
-                  {/* Scan Result */}
                   {result && (
                     <div className={`scan-result ${result.valid ? 'valid' : 'invalid'}`} style={{marginTop:20}}>
                       <div className="scan-icon">{result.valid ? '✅' : '❌'}</div>
@@ -328,13 +318,12 @@ export default function SecurityDashboard() {
               </div>
             </div>
 
-            {/* Guide */}
             <div className="panel" style={{marginTop:0}}>
               <div className="panel-header"><h3>📖 Quick Guide</h3></div>
               <div className="panel-body" style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(200px,1fr))', gap:16}}>
                 {[
                   { icon:'📷', title:'Camera Scan', desc:'Click "Start Camera", point at QR code — auto-detects and verifies instantly.' },
-                  { icon:'⌨️', title:'Manual Entry', desc:'Paste or type the QR token string and click Verify.' },
+                  { icon:'⌨️', title:'Manual Entry', desc:'Paste the QR token or full JSON string and click Verify.' },
                   { icon:'🚪', title:'Exit', desc:'Student leaving campus — select EXIT before scanning.' },
                   { icon:'🏠', title:'Return', desc:'Student returning — select RETURN before scanning.' },
                   { icon:'✅', title:'Green = Allow', desc:'Valid permission. Allow student through.' },
