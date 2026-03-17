@@ -12,20 +12,13 @@ import java.util.List;
 @Repository
 public interface UsageLogRepository extends JpaRepository<UsageLog, Long> {
 
-    // Used by AnalyticsService
+    @Query("SELECT u FROM UsageLog u LEFT JOIN FETCH u.permission p LEFT JOIN FETCH p.student ORDER BY u.scannedAt DESC")
+    List<UsageLog> findRecentScansWithDetails();
+
     List<UsageLog> findTop100ByOrderByScannedAtDesc();
 
-    // Used by GateScanService — scan history for a permission
     List<UsageLog> findByPermission_IdOrderByScannedAtDesc(Long permissionId);
-    // Check if student exited
-@Query("SELECT COUNT(u) FROM UsageLog u WHERE u.permission.id = :permissionId AND u.scanType = 'EXIT' AND u.outcome = 'ALLOWED'")
-long countExitScans(@Param("permissionId") Long permissionId);
 
-// Check if student returned
-@Query("SELECT COUNT(u) FROM UsageLog u WHERE u.permission.id = :permissionId AND u.scanType = 'RETURN' AND u.outcome = 'ALLOWED'")
-long countReturnScans(@Param("permissionId") Long permissionId);
-
-    // Used by RiskScoringService — count exits by student in a time window
     @Query("""
         SELECT COUNT(u)
         FROM UsageLog u
@@ -37,4 +30,10 @@ long countReturnScans(@Param("permissionId") Long permissionId);
             @Param("studentId") Long studentId,
             @Param("from") LocalDateTime from,
             @Param("to") LocalDateTime to);
+
+    @Query("SELECT COUNT(u) FROM UsageLog u WHERE u.permission.id = :permissionId AND u.scanType = 'EXIT' AND u.outcome = 'ALLOWED'")
+    long countExitScans(@Param("permissionId") Long permissionId);
+
+    @Query("SELECT COUNT(u) FROM UsageLog u WHERE u.permission.id = :permissionId AND u.scanType = 'RETURN' AND u.outcome = 'ALLOWED'")
+    long countReturnScans(@Param("permissionId") Long permissionId);
 }
