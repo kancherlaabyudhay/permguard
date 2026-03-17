@@ -1,7 +1,6 @@
 package com.permguard.service;
 
 import com.permguard.entity.Permission;
-
 import com.permguard.entity.UsageLog;
 import com.permguard.entity.User;
 import com.permguard.repository.PermissionRepository;
@@ -44,14 +43,6 @@ public class GateScanService {
             return result;
         }
 
-        if (permission.getStatus() == Permission.Status.EXPIRED) {
-            result.put("valid",   false);
-            result.put("reason",  "EXPIRED");
-            result.put("message", "Permission has expired");
-            logScan(permission, scannerEmail, scanType, "DENIED", "Permission expired");
-            return result;
-        }
-
         if (permission.getStatus() == Permission.Status.REJECTED) {
             result.put("valid",   false);
             result.put("reason",  "REJECTED");
@@ -60,15 +51,45 @@ public class GateScanService {
             return result;
         }
 
-        if (permission.getStatus() != Permission.Status.APPROVED) {
+        if (permission.getStatus() == Permission.Status.PENDING) {
             result.put("valid",   false);
             result.put("reason",  "NOT_APPROVED");
-            result.put("message", "Permission is not approved (status: "
-                    + permission.getStatus() + ")");
+            result.put("message", "Permission is not approved yet");
             logScan(permission, scannerEmail, scanType, "DENIED", "Not approved");
             return result;
         }
 
+        // ✅ Allow RETURN even if EXPIRED — student coming back to campus
+        if ("RETURN".equalsIgnoreCase(scanType) &&
+            (permission.getStatus() == Permission.Status.APPROVED ||
+             permission.getStatus() == Permission.Status.EXPIRED)) {
+
+            logScan(permission, scannerEmail, scanType, "ALLOWED", "Student returned to campus");
+
+            result.put("valid",          true);
+            result.put("reason",         "RETURNED");
+            result.put("message",        "✅ Student returned to campus");
+            result.put("studentName",    permission.getStudent().getFullName());
+            result.put("studentRoll",    permission.getStudent().getRollNumber());
+            result.put("permissionType", permission.getType());
+            result.put("leaveReason",    permission.getReason());
+            result.put("expiryTime",     permission.getExpiryTime().toString());
+            result.put("approvedBy",     permission.getFaculty() != null
+                    ? permission.getFaculty().getFullName() : "Admin");
+            result.put("permissionId",   permission.getId());
+            return result;
+        }
+
+        // ✅ Block EXIT if already expired
+        if (permission.getStatus() == Permission.Status.EXPIRED) {
+            result.put("valid",   false);
+            result.put("reason",  "EXPIRED");
+            result.put("message", "Permission has expired");
+            logScan(permission, scannerEmail, scanType, "DENIED", "Permission expired");
+            return result;
+        }
+
+        // ✅ Block EXIT if expiry time passed
         if (permission.getExpiryTime().isBefore(LocalDateTime.now())) {
             permission.setStatus(Permission.Status.EXPIRED);
             permissionRepository.save(permission);
@@ -79,6 +100,7 @@ public class GateScanService {
             return result;
         }
 
+        // ✅ Valid EXIT scan
         logScan(permission, scannerEmail, scanType, "ALLOWED", "Valid permission");
 
         result.put("valid",          true);
@@ -94,26 +116,6 @@ public class GateScanService {
         result.put("permissionId",   permission.getId());
         return result;
     }
-    // Allow RETURN even if expired - student is coming back
-if ("RETURN".equalsIgnoreCase(scanType) && 
-    (permission.getStatus() == Permission.Status.APPROVED || 
-     permission.getStatus() == Permission.Status.EXPIRED)) {
-    
-    logScan(permission, scannerEmail, scanType, "ALLOWED", "Student returned to campus");
-    
-    result.put("valid", true);
-    result.put("reason", "RETURNED");
-    result.put("message", "✅ Student returned to campus");
-    result.put("studentName", permission.getStudent().getFullName());
-    result.put("studentRoll", permission.getStudent().getRollNumber());
-    result.put("permissionType", permission.getType());
-    result.put("leaveReason", permission.getReason());
-    result.put("expiryTime", permission.getExpiryTime().toString());
-    result.put("approvedBy", permission.getFaculty() != null 
-            ? permission.getFaculty().getFullName() : "Admin");
-    result.put("permissionId", permission.getId());
-    return result;
-}
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void logScan(Permission permission, String scannerEmail,
@@ -123,17 +125,17 @@ if ("RETURN".equalsIgnoreCase(scanType) &&
 
             UsageLog log = new UsageLog();
             log.setPermission(permission);
-            // ✅ FIX: scannedBy is Long, extract userId from User object
             log.setScannedBy(scanner != null ? scanner.getUserId() : null);
             log.setScanType(scanType != null ? scanType : "EXIT");
             log.setOutcome(outcome);
             log.setNotes(notes);
             log.setScannedAt(LocalDateTime.now());
-            // exitTime for fraud detection — set on EXIT scans
             if ("EXIT".equalsIgnoreCase(scanType)) {
                 log.setExitTime(LocalDateTime.now());
             }
-
+            if ("RETURN".equalsIgnoreCase(scanType)) {
+                log.setReturnTime(LocalDateTime.now());
+            }
             usageLogRepository.save(log);
         } catch (Exception e) {
             System.err.println("[GateScan] Log failed: " + e.getMessage());
@@ -143,7 +145,6 @@ if ("RETURN".equalsIgnoreCase(scanType) &&
     public Object getScanHistory(Long permissionId) {
         Permission permission = permissionRepository.findById(permissionId)
                 .orElseThrow(() -> new RuntimeException("Permission not found"));
-        // ✅ FIX: use correct repository method name
         return usageLogRepository.findByPermission_IdOrderByScannedAtDesc(permissionId);
     }
 }
