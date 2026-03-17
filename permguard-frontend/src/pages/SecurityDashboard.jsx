@@ -111,7 +111,6 @@ export default function SecurityDashboard() {
       canvas.height = video.videoHeight;
       const ctx = canvas.getContext('2d');
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
       if (window.jsQR) {
@@ -130,21 +129,18 @@ export default function SecurityDashboard() {
   const handleAutoScan = async (qrToken) => {
     if (!qrToken.trim()) return;
 
-    // Extract token if QR contains JSON
     let extractedToken = qrToken.trim();
     try {
       const parsed = JSON.parse(qrToken.trim());
       if (parsed.token) extractedToken = parsed.token;
-    } catch (e) {
-      // Not JSON, use as-is
-    }
+    } catch (e) {}
 
     setScanning(true);
     setResult(null);
     try {
       const r = await gateApi.scan({ qrToken: extractedToken, scanType });
       setResult(r.data);
-      if (r.data.valid) { loadStats(); }
+      loadStats(); // always refresh stats after any scan
     } catch (err) {
       setResult({ valid: false, message: err.response?.data?.message || 'Scan failed', reason: 'ERROR' });
     } finally { setScanning(false); }
@@ -174,9 +170,18 @@ export default function SecurityDashboard() {
             </div>
 
             <div className="stat-grid" style={{gridTemplateColumns:'repeat(3,1fr)', maxWidth:480}}>
-              <div className="stat-card"><div className="stat-label">Total Scans</div><div className="stat-value">{stats?.totalGateScans ?? '—'}</div></div>
-              <div className="stat-card success"><div className="stat-label">Approved</div><div className="stat-value">{stats?.approvedPermissions ?? '—'}</div></div>
-              <div className="stat-card"><div className="stat-label">Pending</div><div className="stat-value" style={{color:'#C9973A'}}>{stats?.pendingPermissions ?? '—'}</div></div>
+              <div className="stat-card">
+                <div className="stat-label">Total Scans</div>
+                <div className="stat-value">{stats?.totalGateScans ?? '—'}</div>
+              </div>
+              <div className="stat-card success">
+                <div className="stat-label">Approved</div>
+                <div className="stat-value">{stats?.approvedPermissions ?? '—'}</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-label">Pending</div>
+                <div className="stat-value" style={{color:'#C9973A'}}>{stats?.pendingPermissions ?? '—'}</div>
+              </div>
             </div>
 
             <div style={styles.scanTypeRow}>
@@ -289,7 +294,6 @@ export default function SecurityDashboard() {
                         {result.valid ? 'ACCESS GRANTED' : 'ACCESS DENIED'}
                       </h3>
                       <p style={{marginBottom:12}}>{result.message}</p>
-
                       {result.valid && (
                         <div style={styles.resultDetails}>
                           {[
@@ -346,7 +350,7 @@ export default function SecurityDashboard() {
           <>
             <div className="page-header">
               <h2>Scan History</h2>
-              <p>Recent gate scan activity</p>
+              <p>Recent gate scan activity — EXIT and RETURN logs</p>
             </div>
             <div className="panel">
               <div className="panel-header">
@@ -358,18 +362,43 @@ export default function SecurityDashboard() {
                   <div className="table-wrap">
                     <table>
                       <thead>
-                        <tr><th>Time</th><th>Student</th><th>Type</th><th>Outcome</th><th>Notes</th></tr>
+                        <tr>
+                          <th>Time</th>
+                          <th>Student</th>
+                          <th>Roll No</th>
+                          <th>Permission</th>
+                          <th>Scan Type</th>
+                          <th>Outcome</th>
+                          <th>Notes</th>
+                        </tr>
                       </thead>
                       <tbody>
                         {history.length === 0 ? (
-                          <tr><td colSpan={5}><div className="empty-state"><div className="empty-icon">📜</div><p>No scan history yet</p></div></td></tr>
+                          <tr><td colSpan={7}>
+                            <div className="empty-state">
+                              <div className="empty-icon">📜</div>
+                              <p>No scan history yet</p>
+                            </div>
+                          </td></tr>
                         ) : history.map((s, i) => (
                           <tr key={i}>
-                            <td style={{whiteSpace:'nowrap', fontSize:'0.82rem'}}>{s.scannedAt ? new Date(s.scannedAt).toLocaleString() : '—'}</td>
-                            <td>{s.permission?.student?.fullName || '—'}</td>
-                            <td><span className={`badge ${s.scanType === 'EXIT' ? 'badge-pending' : 'badge-approved'}`}>{s.scanType}</span></td>
-                            <td><span className={`badge badge-${s.outcome?.toLowerCase()}`}>{s.outcome}</span></td>
-                            <td style={{fontSize:'0.82rem', color:'#888'}}>{s.notes}</td>
+                            <td style={{whiteSpace:'nowrap', fontSize:'0.82rem'}}>
+                              {s.scannedAt ? new Date(s.scannedAt).toLocaleString() : '—'}
+                            </td>
+                            <td><strong>{s.studentName || '—'}</strong></td>
+                            <td style={{fontSize:'0.82rem'}}>{s.studentRoll || '—'}</td>
+                            <td style={{fontSize:'0.82rem'}}>{s.permissionType?.replace('_',' ') || '—'}</td>
+                            <td>
+                              <span className={`badge ${s.scanType === 'EXIT' ? 'badge-pending' : 'badge-approved'}`}>
+                                {s.scanType === 'EXIT' ? '🚪 EXIT' : '🏠 RETURN'}
+                              </span>
+                            </td>
+                            <td>
+                              <span className={`badge badge-${s.outcome?.toLowerCase()}`}>
+                                {s.outcome === 'ALLOWED' ? '✅ ALLOWED' : '❌ DENIED'}
+                              </span>
+                            </td>
+                            <td style={{fontSize:'0.82rem', color:'#888'}}>{s.notes || '—'}</td>
                           </tr>
                         ))}
                       </tbody>
