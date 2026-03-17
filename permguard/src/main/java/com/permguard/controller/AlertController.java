@@ -21,6 +21,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/alerts")
+import org.springframework.security.access.prepost.PreAuthorize;
+
+@RestController
+@RequestMapping("/analytics")
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_FACULTY', 'ROLE_STUDENT', 'ROLE_SECURITY')")
+public class AnalyticsController {
 public class AlertController {
 
     private final AlertRepository alertRepo;
