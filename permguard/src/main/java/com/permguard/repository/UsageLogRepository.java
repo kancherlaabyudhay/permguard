@@ -17,6 +17,13 @@ public interface UsageLogRepository extends JpaRepository<UsageLog, Long> {
 
     // Used by GateScanService — scan history for a permission
     List<UsageLog> findByPermission_IdOrderByScannedAtDesc(Long permissionId);
+    // Check if student exited
+@Query("SELECT COUNT(u) FROM UsageLog u WHERE u.permission.id = :permissionId AND u.scanType = 'EXIT' AND u.outcome = 'ALLOWED'")
+long countExitScans(@Param("permissionId") Long permissionId);
+
+// Check if student returned
+@Query("SELECT COUNT(u) FROM UsageLog u WHERE u.permission.id = :permissionId AND u.scanType = 'RETURN' AND u.outcome = 'ALLOWED'")
+long countReturnScans(@Param("permissionId") Long permissionId);
 
     // Used by RiskScoringService — count exits by student in a time window
     @Query("""
