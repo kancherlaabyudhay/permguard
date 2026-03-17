@@ -1,6 +1,7 @@
 package com.permguard.controller;
 
 import com.permguard.service.AnalyticsService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
