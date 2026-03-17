@@ -103,7 +103,7 @@ public class AnalyticsService {
 
     @Transactional(readOnly = true)
     public List<Map<String, Object>> getRecentScans() {
-        return usageLogRepository.findTop100ByOrderByScannedAtDesc()
+        return usageLogRepository.findRecentScansWithDetails()
                 .stream()
                 .limit(20)
                 .map(log -> {
