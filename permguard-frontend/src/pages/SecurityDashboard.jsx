@@ -41,9 +41,16 @@ export default function SecurityDashboard() {
 
   const loadHistory = async () => {
     setLoadingHistory(true);
-    try { const r = await analyticsApi.recentScans(); setHistory(r.data); }
-    catch {} finally { setLoadingHistory(false); }
-  };
+    try { 
+        const r = await analyticsApi.recentScans(); 
+        setHistory(r.data || []); 
+    } catch (err) {
+        console.error('History error:', err);
+        setHistory([]); // stop infinite loading
+    } finally { 
+        setLoadingHistory(false); 
+    }
+};
 
   const loadStats = async () => {
     try { const r = await analyticsApi.summary(); setStats(r.data); } catch {}
