@@ -1,12 +1,12 @@
 package com.permguard.service;
 
 import com.permguard.entity.Permission;
-
 import com.permguard.entity.User;
 import com.permguard.repository.PermissionRepository;
 import com.permguard.repository.UsageLogRepository;
 import com.permguard.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -36,7 +36,6 @@ public class AnalyticsService {
         long expired  = permissionRepository.countByStatus(Permission.Status.EXPIRED);
         long flagged  = permissionRepository.countByStatus(Permission.Status.FLAGGED);
         long totalScans    = usageLogRepository.count();
-        // ✅ FIX: use enum, not String
         long totalStudents = userRepository.countByRole(User.Role.STUDENT);
 
         summary.put("totalPermissions",   total);
@@ -102,9 +101,45 @@ public class AnalyticsService {
         }).collect(Collectors.toList());
     }
 
-    public Object getRecentScans() {
+    @Transactional(readOnly = true)
+    public List<Map<String, Object>> getRecentScans() {
         return usageLogRepository.findTop100ByOrderByScannedAtDesc()
-                .stream().limit(20).collect(Collectors.toList());
+                .stream()
+                .limit(20)
+                .map(log -> {
+                    Map<String, Object> item = new LinkedHashMap<>();
+                    item.put("id",        log.getId());
+                    item.put("scanType",  log.getScanType());
+                    item.put("outcome",   log.getOutcome());
+                    item.put("notes",     log.getNotes());
+                    item.put("scannedAt", log.getScannedAt() != null
+                            ? log.getScannedAt().toString() : null);
+                    try {
+                        if (log.getPermission() != null) {
+                            item.put("permissionId",   log.getPermission().getId());
+                            item.put("permissionType", log.getPermission().getType());
+                            if (log.getPermission().getStudent() != null) {
+                                item.put("studentName", log.getPermission().getStudent().getFullName());
+                                item.put("studentRoll", log.getPermission().getStudent().getRollNumber());
+                            } else {
+                                item.put("studentName", "—");
+                                item.put("studentRoll", "—");
+                            }
+                        } else {
+                            item.put("permissionId",   null);
+                            item.put("permissionType", "—");
+                            item.put("studentName",    "—");
+                            item.put("studentRoll",    "—");
+                        }
+                    } catch (Exception e) {
+                        item.put("studentName",    "—");
+                        item.put("studentRoll",    "—");
+                        item.put("permissionType", "—");
+                        item.put("permissionId",   null);
+                    }
+                    return item;
+                })
+                .collect(Collectors.toList());
     }
 
     public Map<String, Object> getFullReport() {
