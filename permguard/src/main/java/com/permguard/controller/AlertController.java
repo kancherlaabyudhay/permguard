@@ -11,22 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-// ================================================================
-//  AlertController
-//
-//  GET    /alerts              ADMIN — all open alerts
-//  GET    /alerts/student/{id} ADMIN — alerts for one student
-//  PATCH  /alerts/{id}/resolve ADMIN — mark alert resolved
-// ================================================================
-
 @RestController
 @RequestMapping("/alerts")
-import org.springframework.security.access.prepost.PreAuthorize;
-
-@RestController
-@RequestMapping("/analytics")
-@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_FACULTY', 'ROLE_STUDENT', 'ROLE_SECURITY')")
-public class AnalyticsController {
 public class AlertController {
 
     private final AlertRepository alertRepo;
@@ -35,9 +21,8 @@ public class AlertController {
         this.alertRepo = alertRepo;
     }
 
-    // ── All open alerts ───────────────────────────────────────
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_FACULTY')")
     public ResponseEntity<?> getOpenAlerts() {
         List<Map<String, Object>> result = alertRepo
                 .findByResolvedFalseOrderByCreatedAtDesc()
@@ -47,9 +32,8 @@ public class AlertController {
         return ResponseEntity.ok(result);
     }
 
-    // ── Alerts for a specific student ─────────────────────────
     @GetMapping("/student/{studentId}")
-    @PreAuthorize("hasAnyRole('ADMIN','FACULTY')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_FACULTY')")
     public ResponseEntity<?> getStudentAlerts(@PathVariable Long studentId) {
         List<Map<String, Object>> result = alertRepo
                 .findByStudent_UserIdOrderByCreatedAtDesc(studentId)
@@ -59,9 +43,8 @@ public class AlertController {
         return ResponseEntity.ok(result);
     }
 
-    // ── Resolve an alert ──────────────────────────────────────
     @PatchMapping("/{id}/resolve")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> resolveAlert(@PathVariable Long id) {
         return alertRepo.findById(id).map(alert -> {
             alert.setResolved(true);
@@ -70,7 +53,6 @@ public class AlertController {
         }).orElse(ResponseEntity.badRequest().body(Map.of("error", "Alert not found")));
     }
 
-    // ── DTO helper ────────────────────────────────────────────
     private Map<String, Object> toMap(Alert a) {
         Map<String, Object> map = new HashMap<>();
         map.put("id",          a.getId());
