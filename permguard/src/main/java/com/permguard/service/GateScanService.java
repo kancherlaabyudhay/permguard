@@ -94,6 +94,26 @@ public class GateScanService {
         result.put("permissionId",   permission.getId());
         return result;
     }
+    // Allow RETURN even if expired - student is coming back
+if ("RETURN".equalsIgnoreCase(scanType) && 
+    (permission.getStatus() == Permission.Status.APPROVED || 
+     permission.getStatus() == Permission.Status.EXPIRED)) {
+    
+    logScan(permission, scannerEmail, scanType, "ALLOWED", "Student returned to campus");
+    
+    result.put("valid", true);
+    result.put("reason", "RETURNED");
+    result.put("message", "✅ Student returned to campus");
+    result.put("studentName", permission.getStudent().getFullName());
+    result.put("studentRoll", permission.getStudent().getRollNumber());
+    result.put("permissionType", permission.getType());
+    result.put("leaveReason", permission.getReason());
+    result.put("expiryTime", permission.getExpiryTime().toString());
+    result.put("approvedBy", permission.getFaculty() != null 
+            ? permission.getFaculty().getFullName() : "Admin");
+    result.put("permissionId", permission.getId());
+    return result;
+}
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void logScan(Permission permission, String scannerEmail,
