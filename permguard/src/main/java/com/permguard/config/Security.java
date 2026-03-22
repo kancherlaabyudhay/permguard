@@ -26,7 +26,6 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 public class Security {
 
     private final CustomUserDetailsService userDetailsService;
