@@ -10,10 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// ================================================================
-//  FraudService — exposes fraud/alert data to the dashboard
-// ================================================================
-
 @Service
 public class FraudService {
 
@@ -26,15 +22,13 @@ public class FraudService {
         this.riskProfileRepo = riskProfileRepo;
     }
 
-    // ----------------------------------------------------------------
-    // ALERTS
-    // ----------------------------------------------------------------
-
+    @Transactional(readOnly = true)
     public List<Map<String, Object>> getUnresolvedAlerts() {
         return alertRepo.findByResolvedFalseOrderByCreatedAtDesc()
                 .stream().map(this::mapAlert).collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public List<Map<String, Object>> getAllAlerts() {
         return alertRepo.findAllByOrderByCreatedAtDesc()
                 .stream().map(this::mapAlert).collect(Collectors.toList());
@@ -54,25 +48,20 @@ public class FraudService {
         return result;
     }
 
-    // ----------------------------------------------------------------
-    // RISK PROFILES
-    // ----------------------------------------------------------------
-
+    @Transactional(readOnly = true)
     public List<Map<String, Object>> getTopRiskyStudents() {
         return riskProfileRepo.findTopRiskyStudents()
                 .stream().map(this::mapRiskProfile).collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public Map<String, Object> getStudentRiskProfile(Long studentId) {
         RiskProfile profile = riskProfileRepo.findByStudent_UserId(studentId)
                 .orElseThrow(() -> new RuntimeException("No risk profile found for student: " + studentId));
         return mapRiskProfile(profile);
     }
 
-    // ----------------------------------------------------------------
-    // FRAUD DASHBOARD — summary for admin
-    // ----------------------------------------------------------------
-
+    @Transactional(readOnly = true)
     public Map<String, Object> getFraudDashboard() {
         Map<String, Object> dashboard = new LinkedHashMap<>();
 
@@ -81,11 +70,8 @@ public class FraudService {
         long highRiskAlerts   = alertRepo.countByRiskLevel(Alert.RiskLevel.HIGH);
         long mediumRiskAlerts = alertRepo.countByRiskLevel(Alert.RiskLevel.MEDIUM);
 
-        // Students with score > 70 (high risk)
         long highRiskStudents = riskProfileRepo.findTopRiskyStudents()
                 .stream().filter(p -> p.getCurrentScore() >= 70).count();
-
-        // Students with score > 40 (medium risk)
         long mediumRiskStudents = riskProfileRepo.findTopRiskyStudents()
                 .stream().filter(p -> p.getCurrentScore() >= 40 && p.getCurrentScore() < 70).count();
 
@@ -100,10 +86,6 @@ public class FraudService {
 
         return dashboard;
     }
-
-    // ----------------------------------------------------------------
-    // Mappers
-    // ----------------------------------------------------------------
 
     private Map<String, Object> mapAlert(Alert alert) {
         Map<String, Object> map = new LinkedHashMap<>();
