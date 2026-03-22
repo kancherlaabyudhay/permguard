@@ -1,7 +1,6 @@
 package com.permguard.config;
 
 import com.permguard.service.CustomUserDetailsService;
-import com.permguard.config.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -9,7 +8,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -37,20 +35,6 @@ public class Security {
         this.jwtAuthFilter = jwtAuthFilter;
     }
 
-    private static final String[] PUBLIC_URLS = {
-            "/auth/**",
-            "/actuator/**"
-    };
-
-    private static final String[] AUTHENTICATED_URLS = {
-            "/qr/**",
-            "/gate/**",
-            "/permissions/**",
-            "/analytics/**",
-            "/fraud/**",
-            "/admin/**"
-    };
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -60,8 +44,7 @@ public class Security {
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers(PUBLIC_URLS).permitAll()
-                .requestMatchers(AUTHENTICATED_URLS).authenticated()
+                .requestMatchers("/auth/**", "/actuator/**").permitAll()
                 .anyRequest().authenticated()
             )
             .authenticationProvider(authenticationProvider())
